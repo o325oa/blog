@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                <p class="card-text text-muted">Опубликовал {{ post.author }}, {{ post.date_posted|date:"F d, Y" }}</p>
+                <p class="card-text">{{ post.content|truncatechars:200 }}</p>
+                <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
